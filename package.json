@@ -10,7 +10,10 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint --ignore-path .gitignore --fix src",
-    "prettier": "prettier src --write"
+    "prettier": "prettier src --write",
+    "cdk:bootstrap": "npx cdk bootstrap",
+    "cloudFront:setup": "cdk deploy",
+    "cloudFront:remove": "cdk remove"
   },
   "dependencies": {
     "@aws-sdk/client-cost-explorer": "^3.338.0",
@@ -20,7 +23,10 @@
     "@mui/material": "^5.8.7",
     "@mui/styles": "^5.8.7",
     "@types/yup": "^0.29.14",
+    "aws-cdk-lib": "^2.81.0",
     "axios": "^0.27.2",
+    "cdk": "^2.81.0-alpha.0",
+    "constructs": "^10.2.36",
     "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

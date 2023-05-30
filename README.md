@@ -1,5 +1,8 @@
 # React-shop-cloudfront
 
+- link - static site - http://first-rss-app.s3-website-us-east-1.amazonaws.com/
+- link - https://d13j44hgpnspof.cloudfront.net/
+
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
 
 - [Vite](https://vitejs.dev/) as a project bundler

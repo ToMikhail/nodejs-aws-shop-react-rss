@@ -1,34 +1,37 @@
-export {};
-const cdk  = require('aws-cdk-lib');  
-const s3 = require("aws-cdk-lib/aws-s3");
-const deployment = require("aws-cdk-lib/aws-s3-deployment");
-const cf = require("aws-cdk-lib/aws-cloudFront");
-const origins = require("aws-cdk-lib/aws-cloudFront-origins");
-const config = require("dotenv");
-
-
+// const s3 = require("aws-cdk-lib/aws-s3");
+// const deployment = require("aws-cdk-lib/aws-s3-deployment");
+// const cf = require("aws-cdk-lib/aws-cloudFront");
+// const origins = require("aws-cdk-lib/aws-cloudFront-origins");
+// const config = require("dotenv");
+ 
+import * as cdk from 'aws-cdk-lib';
+import * as  s3  from 'aws-cdk-lib/aws-s3';
+import * as  deployment  from 'aws-cdk-lib/aws-s3-deployment';
+import * as  cf  from 'aws-cdk-lib/aws-cloudfront';
+import * as  origins  from 'aws-cdk-lib/aws-cloudfront-origins';
+import { config }  from 'dotenv';
 
 config();
 
 const app = new cdk.App();
 
-const stack = new cdk.Stack(app, "ShopReactCloudFrontStack", {
+const stack = new cdk.Stack(app, "ShopReactCloudFrontStackSec", {
   env: { region: "us-east-1" },
 });
 
 const bucket = new s3.Bucket(stack, "WebAppBucket", {
-  bucketName: "rs-aws-course-app",
+  bucketName: "rs-aws-course-app-second",
 });
 
 const originAccessIdentity = new cf.OriginAccessIdentity(
   stack,
-  "WebAppBucketDAI",
+  "WebAppBucketOAI",
   {comment: bucket.bucketName}
 );
 
 bucket.grantRead(originAccessIdentity);
 
-const cloudFront = new cf.distribution(stack, 'WebAppDistribution', {
+const cloudFront = new cf.Distribution(stack, 'WebAppDistributionSec', {
   defaultBehavior: {
     origin: new origins.S3Origin(bucket, {
       originAccessIdentity,
@@ -45,11 +48,11 @@ const cloudFront = new cf.distribution(stack, 'WebAppDistribution', {
   ]
 });
 
-new deployment.BucketDeployment(stack, 'DeployWebApp', {
+new deployment.BucketDeployment(stack, 'DeployWebApplication', {
   destinationBucket: bucket,
   sources: [deployment.Source.asset('./dist')],
   distribution: cloudFront,
-  distributionPath: ['/*'],
+  distributionPaths: ['/*'],
 })
 
 new cdk.CfnOutput(stack, 'Domain URL', {

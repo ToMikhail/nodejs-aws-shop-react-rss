@@ -1,118 +1,118 @@
 {
   "version": "32.0.0",
   "artifacts": {
-    "ShopReactCloudFrontStackSec.assets": {
+    "ShopCloudFrontStack.assets": {
       "type": "cdk:asset-manifest",
       "properties": {
-        "file": "ShopReactCloudFrontStackSec.assets.json",
+        "file": "ShopCloudFrontStack.assets.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
       }
     },
-    "ShopReactCloudFrontStackSec": {
+    "ShopCloudFrontStack": {
       "type": "aws:cloudformation:stack",
-      "environment": "aws://unknown-account/us-east-1",
+      "environment": "aws://unknown-account/eu-west-1",
       "properties": {
-        "templateFile": "ShopReactCloudFrontStackSec.template.json",
+        "templateFile": "ShopCloudFrontStack.template.json",
         "validateOnSynth": false,
-        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-us-east-1",
-        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1/a622872b2eb0904099b6c46e08066e3ce300acc2b4ab24193b8fc63d94fe87d4.json",
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-eu-west-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-eu-west-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-1/ac8fb84382eeea3e5db156c28d16c8f89315d786e2d29d9238c482d4e06c470a.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
-          "ShopReactCloudFrontStackSec.assets"
+          "ShopCloudFrontStack.assets"
         ],
         "lookupRole": {
-          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-us-east-1",
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-eu-west-1",
           "requiresBootstrapStackVersion": 8,
           "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
         }
       },
       "dependencies": [
-        "ShopReactCloudFrontStackSec.assets"
+        "ShopCloudFrontStack.assets"
       ],
       "metadata": {
-        "/ShopReactCloudFrontStackSec/WebAppBucket/Resource": [
+        "/ShopCloudFrontStack/AppBucket/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "WebAppBucket8F6FA179"
+            "data": "AppBucket20FEBF1C"
           }
         ],
-        "/ShopReactCloudFrontStackSec/WebAppBucket/Policy/Resource": [
+        "/ShopCloudFrontStack/AppBucket/Policy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "WebAppBucketPolicy542A2969"
+            "data": "AppBucketPolicy552652DA"
           }
         ],
-        "/ShopReactCloudFrontStackSec/WebAppBucketOAI/Resource": [
+        "/ShopCloudFrontStack/WebBucketOAI/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "WebAppBucketOAIF5A7E11B"
+            "data": "WebBucketOAI65E7A31A"
           }
         ],
-        "/ShopReactCloudFrontStackSec/WebAppDistributionSec/Resource": [
+        "/ShopCloudFrontStack/WebDistribution/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "WebAppDistributionSec95FC6DC6"
+            "data": "WebDistribution59C46482"
           }
         ],
-        "/ShopReactCloudFrontStackSec/DeployWebApplication/AwsCliLayer/Resource": [
+        "/ShopCloudFrontStack/WebAppDeployment/AwsCliLayer/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeployWebApplicationAwsCliLayerFD25E8B1"
+            "data": "WebAppDeploymentAwsCliLayer3233A31E"
           }
         ],
-        "/ShopReactCloudFrontStackSec/DeployWebApplication/CustomResource/Default": [
+        "/ShopCloudFrontStack/WebAppDeployment/CustomResource/Default": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeployWebApplicationCustomResource888C7DCE"
+            "data": "WebAppDeploymentCustomResourceD7DB25D0"
           }
         ],
-        "/ShopReactCloudFrontStackSec/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource": [
+        "/ShopCloudFrontStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
           }
         ],
-        "/ShopReactCloudFrontStackSec/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource": [
+        "/ShopCloudFrontStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF"
           }
         ],
-        "/ShopReactCloudFrontStackSec/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource": [
+        "/ShopCloudFrontStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536"
           }
         ],
-        "/ShopReactCloudFrontStackSec/Domain URL": [
+        "/ShopCloudFrontStack/Domain URL": [
           {
             "type": "aws:cdk:logicalId",
             "data": "DomainURL"
           }
         ],
-        "/ShopReactCloudFrontStackSec/CDKMetadata/Default": [
+        "/ShopCloudFrontStack/CDKMetadata/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CDKMetadata"
           }
         ],
-        "/ShopReactCloudFrontStackSec/BootstrapVersion": [
+        "/ShopCloudFrontStack/BootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BootstrapVersion"
           }
         ],
-        "/ShopReactCloudFrontStackSec/CheckBootstrapVersion": [
+        "/ShopCloudFrontStack/CheckBootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CheckBootstrapVersion"
           }
         ]
       },
-      "displayName": "ShopReactCloudFrontStackSec"
+      "displayName": "ShopCloudFrontStack"
     },
     "Tree": {
       "type": "cdk:tree",

@@ -1,12 +1,12 @@
 {
  "Resources": {
-  "WebAppBucket8F6FA179": {
+  "AppBucket20FEBF1C": {
    "Type": "AWS::S3::Bucket",
    "Properties": {
-    "BucketName": "rs-aws-course-app",
+    "BucketName": "rss-aws-app",
     "Tags": [
      {
-      "Key": "aws-cdk:cr-owned:e2f5f9a1",
+      "Key": "aws-cdk:cr-owned:88ef1753",
       "Value": "true"
      }
     ]
@@ -14,14 +14,14 @@
    "UpdateReplacePolicy": "Retain",
    "DeletionPolicy": "Retain",
    "Metadata": {
-    "aws:cdk:path": "ShopReactCloudFrontStack/WebAppBucket/Resource"
+    "aws:cdk:path": "ShopCloudFrontStack/AppBucket/Resource"
    }
   },
-  "WebAppBucketPolicy542A2969": {
+  "AppBucketPolicy552652DA": {
    "Type": "AWS::S3::BucketPolicy",
    "Properties": {
     "Bucket": {
-     "Ref": "WebAppBucket8F6FA179"
+     "Ref": "AppBucket20FEBF1C"
     },
     "PolicyDocument": {
      "Statement": [
@@ -35,7 +35,7 @@
        "Principal": {
         "CanonicalUser": {
          "Fn::GetAtt": [
-          "WebAppBucketOAIF5A7E11B",
+          "WebBucketOAI65E7A31A",
           "S3CanonicalUserId"
          ]
         }
@@ -43,7 +43,7 @@
        "Resource": [
         {
          "Fn::GetAtt": [
-          "WebAppBucket8F6FA179",
+          "AppBucket20FEBF1C",
           "Arn"
          ]
         },
@@ -53,7 +53,7 @@
           [
            {
             "Fn::GetAtt": [
-             "WebAppBucket8F6FA179",
+             "AppBucket20FEBF1C",
              "Arn"
             ]
            },
@@ -69,7 +69,7 @@
        "Principal": {
         "CanonicalUser": {
          "Fn::GetAtt": [
-          "WebAppBucketOAIF5A7E11B",
+          "WebBucketOAI65E7A31A",
           "S3CanonicalUserId"
          ]
         }
@@ -80,7 +80,7 @@
          [
           {
            "Fn::GetAtt": [
-            "WebAppBucket8F6FA179",
+            "AppBucket20FEBF1C",
             "Arn"
            ]
           },
@@ -94,23 +94,23 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "ShopReactCloudFrontStack/WebAppBucket/Policy/Resource"
+    "aws:cdk:path": "ShopCloudFrontStack/AppBucket/Policy/Resource"
    }
   },
-  "WebAppBucketOAIF5A7E11B": {
+  "WebBucketOAI65E7A31A": {
    "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
    "Properties": {
     "CloudFrontOriginAccessIdentityConfig": {
      "Comment": {
-      "Ref": "WebAppBucket8F6FA179"
+      "Ref": "AppBucket20FEBF1C"
      }
     }
    },
    "Metadata": {
-    "aws:cdk:path": "ShopReactCloudFrontStack/WebAppBucketOAI/Resource"
+    "aws:cdk:path": "ShopCloudFrontStack/WebBucketOAI/Resource"
    }
   },
-  "WebAppDistribution4473AB7E": {
+  "WebDistribution59C46482": {
    "Type": "AWS::CloudFront::Distribution",
    "Properties": {
     "DistributionConfig": {
@@ -124,7 +124,7 @@
      "DefaultCacheBehavior": {
       "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
       "Compress": true,
-      "TargetOriginId": "ShopReactCloudFrontStackWebAppDistributionOrigin1568E6DF8",
+      "TargetOriginId": "ShopCloudFrontStackWebDistributionOrigin139112A17",
       "ViewerProtocolPolicy": "redirect-to-https"
      },
      "DefaultRootObject": "index.html",
@@ -135,11 +135,11 @@
       {
        "DomainName": {
         "Fn::GetAtt": [
-         "WebAppBucket8F6FA179",
+         "AppBucket20FEBF1C",
          "RegionalDomainName"
         ]
        },
-       "Id": "ShopReactCloudFrontStackWebAppDistributionOrigin1568E6DF8",
+       "Id": "ShopCloudFrontStackWebDistributionOrigin139112A17",
        "S3OriginConfig": {
         "OriginAccessIdentity": {
          "Fn::Join": [
@@ -147,7 +147,7 @@
           [
            "origin-access-identity/cloudfront/",
            {
-            "Ref": "WebAppBucketOAIF5A7E11B"
+            "Ref": "WebBucketOAI65E7A31A"
            }
           ]
          ]
@@ -158,10 +158,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "ShopReactCloudFrontStack/WebAppDistribution/Resource"
+    "aws:cdk:path": "ShopCloudFrontStack/WebDistribution/Resource"
    }
   },
-  "DeployWebApplicationAwsCliLayerFD25E8B1": {
+  "WebAppDeploymentAwsCliLayer3233A31E": {
    "Type": "AWS::Lambda::LayerVersion",
    "Properties": {
     "Content": {
@@ -173,13 +173,13 @@
     "Description": "/opt/awscli/aws"
    },
    "Metadata": {
-    "aws:cdk:path": "ShopReactCloudFrontStack/DeployWebApplication/AwsCliLayer/Resource",
+    "aws:cdk:path": "ShopCloudFrontStack/WebAppDeployment/AwsCliLayer/Resource",
     "aws:asset:path": "asset.0e38c73676c042efb04d698981ab7a9706991a146e59250a537916db0e9bde39.zip",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Content"
    }
   },
-  "DeployWebApplicationCustomResource888C7DCE": {
+  "WebAppDeploymentCustomResourceD7DB25D0": {
    "Type": "Custom::CDKBucketDeployment",
    "Properties": {
     "ServiceToken": {
@@ -194,14 +194,14 @@
      }
     ],
     "SourceObjectKeys": [
-     "63ab31abc056821a9a8ab2d480041dd66d1666f978168069670c868070af2ce7.zip"
+     "d71f9fc380a8d868c5bdeeab59eb3818c9ac32028834a01f9128fdd6e4fb7c78.zip"
     ],
     "DestinationBucketName": {
-     "Ref": "WebAppBucket8F6FA179"
+     "Ref": "AppBucket20FEBF1C"
     },
     "Prune": true,
     "DistributionId": {
-     "Ref": "WebAppDistribution4473AB7E"
+     "Ref": "WebDistribution59C46482"
     },
     "DistributionPaths": [
      "/*"
@@ -210,7 +210,7 @@
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "ShopReactCloudFrontStack/DeployWebApplication/CustomResource/Default"
+    "aws:cdk:path": "ShopCloudFrontStack/WebAppDeployment/CustomResource/Default"
    }
   },
   "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265": {
@@ -244,7 +244,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "ShopReactCloudFrontStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource"
+    "aws:cdk:path": "ShopCloudFrontStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource"
    }
   },
   "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF": {
@@ -310,7 +310,7 @@
        "Resource": [
         {
          "Fn::GetAtt": [
-          "WebAppBucket8F6FA179",
+          "AppBucket20FEBF1C",
           "Arn"
          ]
         },
@@ -320,7 +320,7 @@
           [
            {
             "Fn::GetAtt": [
-             "WebAppBucket8F6FA179",
+             "AppBucket20FEBF1C",
              "Arn"
             ]
            },
@@ -349,7 +349,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "ShopReactCloudFrontStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource"
+    "aws:cdk:path": "ShopCloudFrontStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource"
    }
   },
   "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536": {
@@ -375,7 +375,7 @@
     "Handler": "index.handler",
     "Layers": [
      {
-      "Ref": "DeployWebApplicationAwsCliLayerFD25E8B1"
+      "Ref": "WebAppDeploymentAwsCliLayer3233A31E"
      }
     ],
     "Runtime": "python3.9",
@@ -386,7 +386,7 @@
     "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
    ],
    "Metadata": {
-    "aws:cdk:path": "ShopReactCloudFrontStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource",
+    "aws:cdk:path": "ShopCloudFrontStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource",
     "aws:asset:path": "asset.9eb41a5505d37607ac419321497a4f8c21cf0ee1f9b4a6b29aa04301aea5c7fd",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
@@ -398,7 +398,7 @@
     "Analytics": "v2:deflate64:H4sIAAAAAAAA/21QXYvCMBD8Lb7HPT3huNdaEYQDD4V7LTFdZW2aSDY5KaH//ZLWr4eDwMwOk51k3uFzDrOJvPJU1c1U0wHi3kvViCRVkRcQl0E16EV5NDc2wrfVpLqnfJvHYSkZe6G0DfXRWeMhbh2dyBRKIfOmRuPJD5fL7Flnz7+OFbF3dAierMn217kXvKhijRdtuzb5YcxePQQhmdEzFBl6oWV7qCXEtOZLduh+0HFeuydz0uitWQejhqAHSdY77wXJFuLOaszygM8ORtbfQyqdA6rUodIExZVLTUOmGN6SGk5fPYkysLftDtkGp8a1d/4qboO/hPQBY2uEM7/9zj8gndnkzERTF1JVLcJuxD+b5cnD0gEAAA=="
    },
    "Metadata": {
-    "aws:cdk:path": "ShopReactCloudFrontStack/CDKMetadata/Default"
+    "aws:cdk:path": "ShopCloudFrontStack/CDKMetadata/Default"
    }
   }
  },
@@ -406,7 +406,7 @@
   "DomainURL": {
    "Value": {
     "Fn::GetAtt": [
-     "WebAppDistribution4473AB7E",
+     "WebDistribution59C46482",
      "DomainName"
     ]
    }

@@ -9,23 +9,23 @@ config();
 
 const app = new cdk.App();
 
-const stack = new cdk.Stack(app, "ShopReactCloudFrontStackSec", {
-  env: { region: "us-east-1" },
+const stack = new cdk.Stack(app, "ShopCloudFrontStack", {
+  env: { region: "eu-west-1" },
 });
 
-const bucket = new s3.Bucket(stack, "WebAppBucket", {
-  bucketName: "rs-aws-course-app-second",
+const bucket = new s3.Bucket(stack, "AppBucket", {
+  bucketName: "rss-aws-app",
 });
 
 const originAccessIdentity = new cf.OriginAccessIdentity(
   stack,
-  "WebAppBucketOAI",
+  "WebBucketOAI",
   { comment: bucket.bucketName }
 );
 
 bucket.grantRead(originAccessIdentity);
 
-const cloudFront = new cf.Distribution(stack, "WebAppDistributionSec", {
+const cloudFront = new cf.Distribution(stack, "WebDistribution", {
   defaultBehavior: {
     origin: new origins.S3Origin(bucket, {
       originAccessIdentity,
@@ -42,7 +42,7 @@ const cloudFront = new cf.Distribution(stack, "WebAppDistributionSec", {
   ],
 });
 
-new deployment.BucketDeployment(stack, "DeployWebApplication", {
+new deployment.BucketDeployment(stack, "WebAppDeployment", {
   destinationBucket: bucket,
   sources: [deployment.Source.asset("./dist")],
   distribution: cloudFront,

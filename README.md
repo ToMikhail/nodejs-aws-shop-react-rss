@@ -1,3 +1,7 @@
+Swagger openAPI
+- https://app.swaggerhub.com/apis/TOUSTSIKMIKHAIL/product_api/1.0.0
+
+
 # React-shop-cloudfront
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:

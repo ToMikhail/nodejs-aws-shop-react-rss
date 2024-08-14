@@ -1,0 +1,124 @@
+{
+  "version": "32.0.0",
+  "artifacts": {
+    "ShopCloudFrontStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "ShopCloudFrontStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "ShopCloudFrontStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/eu-west-1",
+      "properties": {
+        "templateFile": "ShopCloudFrontStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-eu-west-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-eu-west-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-1/ac8fb84382eeea3e5db156c28d16c8f89315d786e2d29d9238c482d4e06c470a.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "ShopCloudFrontStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-eu-west-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "ShopCloudFrontStack.assets"
+      ],
+      "metadata": {
+        "/ShopCloudFrontStack/AppBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppBucket20FEBF1C"
+          }
+        ],
+        "/ShopCloudFrontStack/AppBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppBucketPolicy552652DA"
+          }
+        ],
+        "/ShopCloudFrontStack/WebBucketOAI/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebBucketOAI65E7A31A"
+          }
+        ],
+        "/ShopCloudFrontStack/WebDistribution/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebDistribution59C46482"
+          }
+        ],
+        "/ShopCloudFrontStack/WebAppDeployment/AwsCliLayer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAppDeploymentAwsCliLayer3233A31E"
+          }
+        ],
+        "/ShopCloudFrontStack/WebAppDeployment/CustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebAppDeploymentCustomResourceD7DB25D0"
+          }
+        ],
+        "/ShopCloudFrontStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
+          }
+        ],
+        "/ShopCloudFrontStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF"
+          }
+        ],
+        "/ShopCloudFrontStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536"
+          }
+        ],
+        "/ShopCloudFrontStack/Domain URL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DomainURL"
+          }
+        ],
+        "/ShopCloudFrontStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/ShopCloudFrontStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/ShopCloudFrontStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "ShopCloudFrontStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

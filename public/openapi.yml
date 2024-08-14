@@ -1,0 +1,92 @@
+openapi: 3.0.1
+info:
+  title: Swagger product API
+  version: 1.0.0
+servers:
+  - url: https://amji517pw1.execute-api.eu-west-1.amazonaws.com
+    description: Server
+
+paths:
+  /products:
+    get:
+      summary: Method for getting all products.
+      tags:
+        - Products
+      operationId: getProducts
+      responses: 
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Products"
+        'default':
+          description: Something went wrong
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /products/{getProductById}:
+    get:
+      summary: Method for getting product by id.
+      tags:
+        - Products
+      operationId: getProductById
+      parameters: 
+        - name: getProductById
+          in: path
+          required: true
+          description: Product identifier
+          schema:
+            type: string
+          example: aaaa
+      responses: 
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Products"
+        'default':
+          description: Something went wrong
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+            
+          
+components: 
+  schemas: 
+    Product:
+      type: object
+      required:
+        - title
+        - price
+      properties:
+        id: 
+          type: string
+          example: 1
+        title: 
+          type: string
+          example: Product name
+        desciption: 
+          type: string
+          example: product descripion
+        price: 
+          type: number
+          example: 100
+    Products:
+      type: array
+      items:
+        $ref: "#/components/schemas/Product"
+    Error:
+      type: object
+      required: 
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+  

@@ -1,3 +1,7 @@
+Swagger openAPI
+- https://app.swaggerhub.com/apis/TOUSTSIKMIKHAIL/product_api/1.0.0
+
+
 # React-shop-cloudfront
 
 - link - static site - http://first-rss-app.s3-website-us-east-1.amazonaws.com/
